@@ -1,0 +1,81 @@
+.header-color{
+  background-color: #057340;
+}
+
+.toggle-style:hover{
+  background-color: #057340;
+}
+
+.hidden-on-lg-sm{
+  display: none;
+}
+
+.text-align-center{
+  text-align: center;
+}
+.paging_full_numbers a.paginate_button {
+    color: #057340 !important;
+}
+.paging_full_numbers a.paginate_active {
+    color: #057340 !important;
+}
+
+.bday-select-margin-top{
+  margin-top:0px;
+}
+
+
+@media (max-width: 768px) {
+  .hidden-on-lg-sm{
+  display: block;
+}
+.main-sidebar{
+  padding-top:60px;
+}
+
+.modal-dialog{
+  padding-left:0;
+  }
+
+  .bday-select-margin-top{
+  margin-top:10px;
+}
+}
+.form-control{
+  background-color: #f3f3f3;
+  border:none;
+  border:1px solid #ebebeb;
+  box-shadow: none;
+}
+
+.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border:1px solid #eef2f6;
+    outline:#1a6132;
+}
+
+.form-control::-webkit-input-placeholder { color: #7e9a87; }
+.form-control:-moz-placeholder { color: #7e9a87; }
+.form-control::-moz-placeholder { color: #7e9a87; }
+.form-control:-ms-input-placeholder { color: #7e9a87; }
+
+.submit-btn-style{
+  height:60px;
+  border:none;
+  background-color: #1a6132;
+}
+
+
+.not-displayed{
+  display:none;
+}
+
+.full-width{
+  width:100%;
+}
+
+
+
+
+
