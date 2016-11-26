@@ -6,7 +6,15 @@ echo$_SESSION["search"] ='';
 
 $loggedin = $_SESSION['userLoggedIn'];
 
-
+$search = mysqli_query($conn,"SELECT * from employeetb where employee_id = 'cog123' ");
+while($rows = mysqli_fetch_assoc($search)){
+  $fname = $rows['fname'];
+  $mname = $rows['mname'];
+  $lname = $rows['lname'];
+  $position = $rows['position'];
+  $image = $rows['image'];
+  $fullname = $fname." ".$lname;
+}
 
 ?>
 
@@ -57,10 +65,10 @@ $loggedin = $_SESSION['userLoggedIn'];
         <a href="#" class="logo header-color hidden-xs" style="padding:0px">
           
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg header-color"><b>Employee </b>Panel</span>
+          <span class="logo-lg" style="background-color:#518e31"><b>Employee </b>Portal</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation" style="background-color: #0a9454;">
+        <nav class="navbar navbar-static-top" role="navigation" style="background-color: #62a440;">
           <!-- Sidebar toggle button-->
           <!-- Sidebar toggle button-->
 
@@ -72,17 +80,17 @@ $loggedin = $_SESSION['userLoggedIn'];
         <span class="icon-bar"></span>
       </a>
 
-      <span class="logo-lg hidden-on-lg-sm" style="color:#fff;font-size:22px;margin-top:8px;width:100%;margin-left:0px;"><b>Admin </b>Panel</span>
+      <span class="logo-lg hidden-on-lg-sm" style="color:#fff;font-size:22px;margin-top:8px;width:100%;margin-left:0px;"><b>Employee </b>Portal</span>
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu hidden-xs">
             <ul class="nav navbar-nav">
               
-              <li><a href="#">Logout</a></li>
+              <li><a href="../../">Logout</a></li>
               <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu header-color">
+          <li class="dropdown user user-menu" style="background-color: #518e31">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../../assets/img/employee_icon.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><b>Employee Name</b></span>
+              <img src="<?php echo"data:image/png;base64,".base64_encode($image); ?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><b><?php echo$fullname;?></b></span>
             </a>
             
           </li>
@@ -97,12 +105,12 @@ $loggedin = $_SESSION['userLoggedIn'];
       <!-- Sidebar user panel -->
       <div class="user-panel" align="left">
         <div class="pull-left image">
-          <img src="../../assets/img/employee_icon.png" class="img-circle" alt="User Image">
+          <img src="<?php echo"data:image/png;base64,".base64_encode($image); ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Employee Name</p>
+          <p><?php echo$fullname;?></p>
           <!--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
-          <a href="#">Cognizant</a>
+          <a href="#"><?php echo$position;?></a>
         </div>
       </div>
       

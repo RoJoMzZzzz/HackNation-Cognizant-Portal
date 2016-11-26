@@ -193,7 +193,7 @@ echo$_SESSION["search"] ='';
 
     
 
-    <a class="btn btn-link">Sign Up for Account</a>
+    <a href="sign-up" class="btn btn-link">Sign Up for Account</a>
     <br><br>
     </div>
 
@@ -202,20 +202,22 @@ echo$_SESSION["search"] ='';
 
     <?php
 
-    //$empId = $_POST['emp_id'];
-    //$pass = $_POST['pass'];
 if(isset($_POST['submit'])){
 	
+    //search inputted employee id from database
 	$sql = mysqli_query($conn,"SELECT * from employeetb where employee_id = '".$_POST['emp_id']."' and password =  '".$_POST['pass']."' ");
 
 		$_SESSION['userLoggedIn'] = $_POST['emp_id'];
 	if($sql->num_rows>0){
+        //log in success
+         header('location:employee/dashboard/');
 		echo'	
 		<script type="text/javascript">
 		confirm("WELCOME! ");
 		</script>	
 						';
 	}else{
+        //display invalid id and password if the inputted data are not in the database
 		echo'	
 			<script type="text/javascript">
 			confirm("INVALID USERNAME OR PASSWORD!");

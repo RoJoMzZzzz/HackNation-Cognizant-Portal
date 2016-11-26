@@ -1,9 +1,9 @@
 .header-color{
-  background-color: #057340;
+  background-color: #65aa41;
 }
 
 .toggle-style:hover{
-  background-color: #057340;
+  background-color: #65aa41;
 }
 
 .hidden-on-lg-sm{
@@ -14,10 +14,10 @@
   text-align: center;
 }
 .paging_full_numbers a.paginate_button {
-    color: #057340 !important;
+    color: #65aa41 !important;
 }
 .paging_full_numbers a.paginate_active {
-    color: #057340 !important;
+    color: #65aa41 !important;
 }
 
 .bday-select-margin-top{
