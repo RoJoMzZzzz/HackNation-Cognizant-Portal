@@ -180,9 +180,9 @@ echo$_SESSION["search"] ='';
     <form method="POST">
     <br><br>
 
-        <input type="text" class="form-control input-style" id="id" placeholder="Employee ID" name="emp_id">
+        <input type="text" class="form-control input-style" id="id" placeholder="Employee ID" name="emp_id" required>
 
-        <input type="password" class="form-control input-style" id="id" placeholder="Password" name="pass">
+        <input type="password" class="form-control input-style" id="id" placeholder="Password" name="pass" required>
 
 
         <input type="submit" class="btn btn-success submit-btn-style" style="border-radius:0px" name="submit" value="LOG-IN">
@@ -193,12 +193,68 @@ echo$_SESSION["search"] ='';
 
     
 
-    <a href="sign-up" class="btn btn-link">Sign Up for Account</a>
+    <a class="btn btn-link" data-toggle="modal" data-target="#signUp">Sign Up for Account</a>
     <br><br>
     </div>
 
     </div>
     </div>
+
+    <!--MODAL-->
+    <form method="POST" >
+             <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">SIGN UP</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="form-horizontal form-label-left input_mask">
+
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left" id="inputSuccess2" name="fname" placeholder="First Name">
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control" id="inputSuccess3"  name="lname" placeholder="Last Name">
+                        <span class="fa fa-user form-control-feedback right" aria-hidden="true" placeholder="Last Name"></span>
+                      </div>
+
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left" id="inputSuccess4"  name="email" placeholder="Email">
+                        <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control" id="inputSuccess5"  name="phone" placeholder="Phone">
+                        <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                      </div>
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left" id="inputSuccess4"  name ="address" placeholder="Address">
+                        <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="date" class="form-control" id="inputSuccess5"  name="bdate">
+                        <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                      </div>
+
+                     
+                      
+                      
+                      
+                      </div>
+                   
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" name="login" value="Submit">
+                  </div>
+                </div>
+              </div>
+            </div> 
+             </form> 
 
     <?php
 
@@ -216,7 +272,9 @@ if(isset($_POST['submit'])){
 		confirm("WELCOME! ");
 		</script>	
 						';
-	}else{
+	}else if ($_POST['emp_id'] == "admin" && $_POST['pass'] == "admin123") {
+		header('location:employee#');
+	}{
         //display invalid id and password if the inputted data are not in the database
 		echo'	
 			<script type="text/javascript">

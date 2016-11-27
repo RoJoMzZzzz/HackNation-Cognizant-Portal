@@ -25,6 +25,7 @@ $games_image = $rows1['image'];
 $points = $rows1['points'];
 }
 
+error_reporting(0);
 
 ?>
 
@@ -43,7 +44,7 @@ $points = $rows1['points'];
     <link rel="shortcut icon" type="image/png" href="../../assets/img/logo.png">
 
     <title>Employee | Cognizant</title>
-
+  <!-- <link rel="stylesheet" type="text/css" href="user.css" />
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="../../assets/dash/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -120,6 +121,9 @@ $points = $rows1['points'];
       padding:15px;
       margin-top:20px;
     }
+    .width{
+      width:70%;
+    }
     @media (max-width: 991px) {
       .wrapper{
         padding-top:0px;
@@ -136,6 +140,100 @@ $points = $rows1['points'];
       }
 
     }
+    .profilePic{
+          background: #11101c;
+          
+          height:50px;
+          width:50px;
+          float:left;
+          margin-top:10px;
+          margin-left: 10px;
+}
+.wallpost2{
+  width:98%;
+  min-height:130px;
+  margin-top:10px;
+  background: #fff;
+  
+  font-family: Arial;
+  transform:traslate3d(0,0,0);
+  -webkit-transform:translate3d(0,0,0);
+
+  /*box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 4px 0 rgba(0, 0, 0, 0.2);*/
+  box-shadow:         1px 1px 1px 1px #ccc;
+
+}
+.profileContainer{
+  width:100%;
+  
+  height:65px;
+}
+.post{
+  
+  
+  /*margin-left:10px;*/
+  min-height:20px;
+  width:95%;
+  margin-top:15px;
+  font-family: Arial;
+  font-size: 15px;
+
+
+}
+.name{
+  float:left;
+  margin-top: 10px;
+  margin-left:10px;
+  height:20px;
+  width:79%;
+  padding:5px;
+  font-family: Arial;
+  font-size: 15px;
+  color:#11101c;
+  font-weight: bold;
+  padding-bottom:2px;
+
+}
+.statusTB{
+  width:88%;
+}
+.timeContainer1{
+  float:left;
+  font:Arial;
+  color:#a6a5a5;
+  font-size: 13px;
+  margin-left:15px;
+
+}
+.custom-file-upload {
+    /*border: 1px solid #ccc;*/
+    float:left;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin:10px;
+    margin-left:30px;
+}
+
+input[type="file"] {
+    display: none;
+      }
+
+      .sbmt-btn{
+        float:right;
+        margin-right:40px;
+      }
+
+      #show-picture{
+        width:80%;
+      }
+
+      .view{
+        display: block;
+      }
+      .hide{
+        display: none;
+      }
+
   </style>
 
   <body class="skin-green fixed" data-spy="scroll" data-target="#scrollspy">
@@ -218,7 +316,7 @@ $points = $rows1['points'];
             
               
               
-                <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Bulletin</a></li>
+                <li class="index.php"><a href="#"><i class="fa fa-circle-o"></i> Bulletin</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Schedule</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> New Hires</a></li>
                  <li><a href="timeline.php"><i class="fa fa-circle-o"></i> Timeline</a></li>
@@ -228,6 +326,7 @@ $points = $rows1['points'];
 
           </ul>
        
+        </li>
 
         <li class="treeview">
           <a href="members">
@@ -302,123 +401,226 @@ $points = $rows1['points'];
 <div class="wr">
 
 
-<div class="container cn" style="width:100%">
+<div class="container cn width">
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bulletin"> 
 
 
     <div class="bulletin-header">
-      Bulletin
+      Timeline
     </div>
 
-    <ul class="nav nav-tabs" style="color:#057340">
-        <li class="active" style="color:#057340">
-            <a  href="#1" data-toggle="tab">Memos</a>
-        </li>
-        <li style="color:#057340">
-            <a href="#2" data-toggle="tab">Events</a>
-        </li>
-        <li style="color:#057340">
-            <a href="#3" data-toggle="tab">Figures</a>
-        </li>
-      </ul>
 
       <div class="tab-content">
 
-      <div class="tab-pane active" id="1">
+        <form method="POST" enctype="multipart/form-data">
+                    <br>
+                    <textarea name="teka" class="statusTB" rows="4" cols="100" placeholder="Write a Post"></textarea>
+                      <input type='hidden' id='date' name='date'>
+                       <div class="line"></div>
+                <label class="custom-file-upload">
+                <input type="file" name="uploadfile" id="take-picture" accept="image/*"/>
+                <i class="fa fa-cloud-upload"></i> Choose Image
+                </label>
+                <img src="about:blank" alt="" id="show-picture" width="95%" class="hide">
+                    
+                   <!-- <input type="button" value="Post" class="btn btn-primary" id="postBtn" onClick="get()" style="width: 90px">-->
+                     <input type="submit" value="Post" class="btn btn-primary sbmt-btn" id="postSubmit" name="submit" onClick="get()" style="width: 90px;">
+ </form>
 
+     <?php
 
-      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-        <div class="memo-con">
+                    if(isset($_POST['submit'])){
+                       // $un1 = $loggedin;
+                        $un1 = $_SESSION['userLoggedIn'];
+                        $user = mysql_real_escape_string($un1);
+                        $post2 = mysql_real_escape_string($_POST['teka']);
+                        $date = mysql_real_escape_string($_POST['date']);
+                        $type= "event";
+                        $college = "general";
+                        $imageData = addslashes(file_get_contents($_FILES['uploadfile']['tmp_name']));
+                        $imageName = mysql_real_escape_string($_FILES["uploadfile"]["name"]);
+                      // $imageData = mysql_real_escape_string(file_get_contents($_FILES["uploadfile"]["tmp_name"]));
 
-        <div class="memo-header">
-          
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        $sql2=mysqli_query($conn,"INSERT into post VALUES ('','$un1','$date','$imageData','$post2')");
+                      
+                    }
 
-          <img src="../../assets/img/employee_icon.png" class="img-responsive">
+                ?>
 
-          </div>
-
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-
-          <b><div style="padding-top:15px">Employee Name</div></b>
-
-
-          </div>
-
-        </div>
-
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-        <div class="memo-con">
-
-        <div class="memo-header">
-          
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-          <img src="../../assets/img/employee_icon.png" class="img-responsive">
-
-          </div>
-
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-
-          <b><div style="padding-top:15px">Employee Name</div></b>
-
-
-          </div>
-
-        </div>
-
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-        <div class="memo-con">
-
-        <div class="memo-header">
-          
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-          <img src="../../assets/img/employee_icon.png" class="img-responsive">
-
-          </div>
-
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-
-          <b><div style="padding-top:15px">Employee Name</div></b>
-
-          </div>
-
-          
-
-        </div>
-
-        <div class="memo-content">
+                <script src="../../assets/js/base.js"></script>
             
-          Asidasdn  as idoajs duasd asud asd jhas dasdas d asd asd ashd ashd aspd asd ashd as da sd asd haish dpa sdpa sdp asd as d.....
+            
 
-          </div>
+            <script type="text/javascript">
+                $('#head1').on( 'change keyup keydown paste cut', 'textarea', function (){
+                $(this).height(0).height(this.scrollHeight);
+                }).find( 'textarea' ).change();
+            </script>
+                
 
-        </div>
-      </div>
+                <script src="../../jquery/jqueryAjax.js"></script>
+                <!--<script src="jquery/jquery.js"></script>-->
+
+                <script type="text/javascript">
+                    $(function(){
+                        $("input:file").change(function (){
+                            document.getElementById('show-picture').style.display="block";
+                            document.getElementById('postSubmit').style.display="block";
+                            document.getElementById('postBtn').style.display="none";
+                        });
+                    });
+                </script>
+                
+                <script type="text/javascript">
+
+                function get(){
 
 
-      </div>
-
-      <div class="tab-pane" id="2">
-
-      </div>
-
-      <div class="tab-pane" id="3">
-
-      </div>
-
-      </div>
 
 
 
+                    
+
+                    var name= $("#name").val();
+                    
+                    var date = $("#date").val();
+
+                    var college ="general";
+
+                    var input = $("#pst").val();
+
+                    var username = $("#uname").val();
+
+                    if(input != ""){
+                    $.post('', {wallPost:input, date:date,college:college}, function(output){
+                    
+                    $("#wallpost").prepend("")});
+                    }
+                    
+
+
+                    document.getElementById("pst").value = "";
+
+
+                    
+                    document.getElementById("show-picture").value = "";
+
+                    
+
+
+
+
+                }
+                
+                
+
+                    
+
+                    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+                    var d = new Date();
+                     var day = days[d.getDay()];
+                    var hr = d.getHours();
+                    var ampm = hr >= 12 ? 'pm' : 'am';
+                    hr = hr % 12;
+                    hr = hr ? hr : 12; // the hour '0' should be '12'
+                    var min = d.getMinutes();
+                    if (min < 10) {
+                        min = "0" + min;
+                    }
+                    
+                    var date = d.getDate();
+                    var month = months[d.getMonth()];
+                    var year = d.getFullYear();
+                    var x = document.getElementById("date");
+                    //x.innerHTML = day + " " + hr + ":" + min + ampm + " " + date + " " + month + " " + year;
+
+                    x.value = month+" "+date+", "+year+" at "+hr+":"+min + ampm;
+
+
+                    
+                    
+
+                </script>
+
+            </div>
+            
+            <script type="text/javascript">
+            var auto_refresh = setInterval(
+                    function ()
+                    {
+                    $('#wallpost').load('loadPost2.php');
+                    }, 500);
+
+            </script>
+
+            <br><br><br>
+
+            <div id="wallpost" class="wallpost">
+
+                <?php
+
+            
+            $un = $_SESSION["userLoggedIn"];
+
+
+
+                 $sql = 'SELECT * FROM post order by id desc';
+                 $result = $conn->query($sql);
+                 
+                    if ($result->num_rows > 0) {
+                    // output data of each row
+   
+                    while($row = $result->fetch_assoc()) {
+                        $post = $row['post'];
+
+                        $userName = $row['employee_id'];
+                        $date = $row['dateAndTime'];
+                        $postId = $row['id'];
+
+                        $sql1 = 'SELECT * FROM employeetb where employee_id ="'.$userName.'"';
+                        $result1 = $conn->query($sql1);
+                        
+                        if ($result1->num_rows > 0) {
+                        // output data of each row
+   
+                        while($row = $result1->fetch_assoc()) {
+
+                        $fname = $row['fname'];
+                        $lname = $row['lname'];
+                        $profile= $row['image'];
+                        $fullname = $fname." ".$lname;
+                    }
+                    
+                    }
+                    
+                        echo "<div class='wallpost2' id='wp2'>";
+                        echo "<div class='profileContainer'>";
+                        echo "<div class='profilePic'><img src="."data:image/png;base64,".base64_encode($profile)." width='50px' height = '50px'></div>";
+                        echo "<div id='nameA' class='name' align='left'>$fullname</div>";
+                        echo "<div class='timeContainer1' align='left'>$date</div>";
+                        echo "</div>";
+                        
+                        echo "<div class='post' align='left'>$post</div>";
+                         echo "</div>";
+                        }
+   
+                     } 
+                    else {
+                        echo("WALA");
+    
+                    }
+
+   
+
+                    
+                
+
+            ?>
+
+</div>
 
 </div>
 

@@ -31,7 +31,7 @@
       text-size-adjust: 100%;
       color: #37302a;
       font: normal 100%/1.4 sans-serif;
-      background: #fff;
+      background: #ddd;
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
@@ -64,8 +64,14 @@
     }
 
     .footer{
-        background:#5b993b;
+        background:#3b4039;
         height:80px;
+    }
+    .form-style{
+        font-size: 16px;
+    }
+    .form-container{
+        background:#fff;
     }
 
     </style>
@@ -80,10 +86,20 @@
 
     </div>
 
-    <form> 
+    <div class="container">
 
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-container">
+
+    <form class="form-style"> 
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"  style="text-align: right">
     <label for="id">Employee ID:</label>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-10 col-xs-10">
     <input type="text" class="form-control input-style" id="id" placeholder="Employee ID" name="emp_id">
+    </div>
+    </div>
 
     <label for="fname">First Name:</label>
     <input type="text" class="form-control input-style" id="fname" placeholder="First Name" name="emp_id">
@@ -115,16 +131,21 @@
     <label for="re_pass">Retype Password:</label>
     <input type="text" class="form-control input-style" id="re_pass" placeholder="Retype Password" name="emp_id">
 
+
+
+    <label for="gender">Gender:</label>
     <label class="radio-inline">
-    <input type="radio" name="gender" id="male" checked="checked">Male
+    <input type="radio" name="gender" id="gender" checked="checked">Male
     </label>
     <label class="radio-inline">
-    <input type="radio" name="gender" id="female">Female
+    <input type="radio" name="gender" id="gender">Female
     </label>
 
     </form>
 
+    </div>
 
+    </div>
 
     <br><br>
 

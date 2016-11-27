@@ -4,8 +4,14 @@
 
     if (takePicture && showPicture) {
         // Set events
+
         takePicture.onchange = function (event) {
             // Get a reference to the taken picture or chosen file
+            //showPicture.style.display = "block";
+
+            showPicture.addClass(view);
+            showPicture.removeClass(hide);
+
             var files = event.target.files,
                 file;
             if (files && files.length > 0) {
