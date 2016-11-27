@@ -138,29 +138,29 @@ echo$_SESSION["search"] ='';
 
     }
 
-    
-
     </style>
+    <!-- End Of Main Styling -->
 
+    <!-- Main Content -->
 
     <body>
 
     <center>
 
     <div class="container">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs">
 
-    <br><br>
+        <br><br>
 
-    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 animate fadeInLeft">
+                  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 animate fadeInLeft">
 
-    <div class="banner">
+                            <div class="banner">
 
-    <img src="assets/img/banner.png" class="img-responsive">
-    
-    </div>
+                            <img src="assets/img/banner.png" class="img-responsive">
+                            
+                            </div>
 
-    </div>
+                  </div>
 
     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 log-in-form ">
 
@@ -175,17 +175,17 @@ echo$_SESSION["search"] ='';
 
                 <img src="assets/img/logo.png" class="logo-icon">
 
-                </div>
+    </div>
 
     <form method="POST">
-    <br><br>
+          <br><br>
 
-        <input type="text" class="form-control input-style" id="id" placeholder="Employee ID" name="emp_id" required>
+              <input type="text" class="form-control input-style" id="id" placeholder="Employee ID" name="emp_id" required>
 
-        <input type="password" class="form-control input-style" id="id" placeholder="Password" name="pass" required>
+              <input type="password" class="form-control input-style" id="id" placeholder="Password" name="pass" required>
 
 
-        <input type="submit" class="btn btn-success submit-btn-style" style="border-radius:0px" name="submit" value="LOG-IN">
+              <input type="submit" class="btn btn-success submit-btn-style" style="border-radius:0px" name="submit" value="LOG-IN">
 
 
 
@@ -239,11 +239,7 @@ echo$_SESSION["search"] ='';
                         <input type="date" class="form-control" id="inputSuccess5"  name="bdate">
                         <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
                       </div>
-
-                     
-                      
-                      
-                      
+    
                       </div>
                    
                   </div>
@@ -254,8 +250,9 @@ echo$_SESSION["search"] ='';
                 </div>
               </div>
             </div> 
+            <!-- End of Modal -->
              </form> 
-
+<!-- PHP part or the logic of the System -->
     <?php
 
 if(isset($_POST['submit'])){
@@ -286,8 +283,10 @@ if(isset($_POST['submit'])){
 
 
     ?>
+    <!-- End of the PHP part -->
 
     </center>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="assets/js/jquery.min.js"></script>

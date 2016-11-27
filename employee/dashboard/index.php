@@ -24,7 +24,16 @@ $answer = $rows1['answer'];
 $games_image = $rows1['image'];
 $points = $rows1['points'];
 }
+$memo = mysqli_query($conn,"SELECT * from memo ");
 
+while($rows2 = mysqli_fetch_assoc($memo)){
+  $title = $rows2['title'];
+  $from = $rows2['from'];
+  $to = $rows2['to'];
+  $content = $rows2['content'];
+  $date = $rows2['date'];
+
+}
 
 ?>
 
@@ -57,15 +66,10 @@ $points = $rows1['points'];
 
     <link rel="stylesheet" href="../../assets/css/admin.css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    
   </head>
 
-
+<!-- Main Styling-->
     <style>
 
 
@@ -137,15 +141,14 @@ $points = $rows1['points'];
 
     }
   </style>
-
+<!-- Main Content -->
   <body class="skin-green fixed" data-spy="scroll" data-target="#scrollspy">
     
 <center>
 <div class="wrapper">
 
       <header class="main-header">
-        <!-- Logo -->
-        <!-- Logo -->
+        
         <a href="#" class="logo header-color hidden-xs" style="padding:0px">
           
           <!-- logo for regular state and mobile devices -->
@@ -153,9 +156,6 @@ $points = $rows1['points'];
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation" style="background-color: #62a440;">
-          <!-- Sidebar toggle button-->
-          <!-- Sidebar toggle button-->
-
 
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
@@ -193,7 +193,7 @@ $points = $rows1['points'];
         </div>
         <div class="pull-left info">
           <p><?php echo$fullname;?></p>
-          <!--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
+          
           <a href="#"><?php echo$position;?></a>
         </div>
       </div>
@@ -215,19 +215,11 @@ $points = $rows1['points'];
             </span>
           </a>
           <ul class="treeview-menu">
-            
-              
-              
-                <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Bulletin</a></li>
+        <li class="active"><a href="index"><i class="fa fa-circle-o"></i> Bulletin</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Schedule</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> New Hires</a></li>
-                 <li><a href="timeline.php"><i class="fa fa-circle-o"></i> Timeline</a></li>
-              
-          
-            
-
-          </ul>
-       
+                 <li><a href="timeline"><i class="fa fa-circle-o"></i> Timeline</a></li>
+          </ul> 
 
         <li class="treeview">
           <a href="members">
@@ -248,7 +240,7 @@ $points = $rows1['points'];
         </li>
 
         <li class="treeview">
-          <a href="facilities">
+          <a href="#">
             <i class="fa fa-trophy"></i> <span>Rewards</span>
             
           </a>
@@ -279,7 +271,7 @@ $points = $rows1['points'];
         </li>
 
         <li class="treeview hidden-on-lg-sm">
-          <a href="#">
+          <a href="../../index">
             <i class=" glyphicon glyphicon-log-out"></i> <span>Logout</span>
             
           </a>
@@ -335,7 +327,41 @@ $points = $rows1['points'];
           
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-          <img src="../../assets/img/employee_icon.png" class="img-responsive">
+          <img src="../../assets/img/ex.png" class="img-responsive">
+
+          </div>
+
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+
+          <b><div style="padding-top:15px"><?php echo" MEMO "; ?></div></b>
+
+          
+            <?php echo"Title : ". $title;
+                  echo"<br><br>";
+                  echo"From : ".$from;
+                  echo"<br><br>";
+                  echo"To : ".$content;
+
+              ?>
+          
+
+        
+
+          </div>
+
+        </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="memo-con">
+
+        <div class="memo-header">
+          
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+          <img src="../../assets/img/ex.png" class="img-responsive">
 
           </div>
 
@@ -358,30 +384,7 @@ $points = $rows1['points'];
           
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-          <img src="../../assets/img/employee_icon.png" class="img-responsive">
-
-          </div>
-
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-
-          <b><div style="padding-top:15px">Employee Name</div></b>
-
-
-          </div>
-
-        </div>
-
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-        <div class="memo-con">
-
-        <div class="memo-header">
-          
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-          <img src="../../assets/img/employee_icon.png" class="img-responsive">
+          <img src="../../assets/img/ex.png" class="img-responsive">
 
           </div>
 
@@ -397,7 +400,7 @@ $points = $rows1['points'];
 
         <div class="memo-content">
             
-          Asidasdn  as idoajs duasd asud asd jhas dasdas d asd asd ashd ashd aspd asd ashd as da sd asd haish dpa sdpa sdp asd as d.....
+          
 
           </div>
 

@@ -138,6 +138,9 @@ error_reporting(0);
         padding-left:0px;
         padding-right:0px;
       }
+      .width{
+      width:100%;
+    }
 
     }
     .profilePic{
@@ -316,7 +319,7 @@ input[type="file"] {
             
               
               
-                <li class="index.php"><a href="#"><i class="fa fa-circle-o"></i> Bulletin</a></li>
+                <li class="index.php"><a href="index"><i class="fa fa-circle-o"></i> Bulletin</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Schedule</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> New Hires</a></li>
                  <li><a href="timeline.php"><i class="fa fa-circle-o"></i> Timeline</a></li>
@@ -329,7 +332,7 @@ input[type="file"] {
         </li>
 
         <li class="treeview">
-          <a href="members">
+          <a href="#">
             <i class="fa fa-group "></i> <span>Ranking</span>
             
           </a>
@@ -347,7 +350,7 @@ input[type="file"] {
         </li>
 
         <li class="treeview">
-          <a href="facilities">
+          <a href="#">
             <i class="fa fa-trophy"></i> <span>Rewards</span>
             
           </a>
@@ -370,7 +373,7 @@ input[type="file"] {
         <li class="header">MORE</li>
 
         <li class="treeview">
-          <a href="account_settings.php">
+          <a href="#">
             <i class="glyphicon glyphicon-cog"></i> <span>Account</span>
             
           </a>
@@ -378,7 +381,7 @@ input[type="file"] {
         </li>
 
         <li class="treeview hidden-on-lg-sm">
-          <a href="#">
+          <a href="../../index">
             <i class=" glyphicon glyphicon-log-out"></i> <span>Logout</span>
             
           </a>
@@ -422,7 +425,7 @@ input[type="file"] {
                 <input type="file" name="uploadfile" id="take-picture" accept="image/*"/>
                 <i class="fa fa-cloud-upload"></i> Choose Image
                 </label>
-                <img src="about:blank" alt="" id="show-picture" width="95%" class="hide">
+                <img src="" alt="" id="show-picture" width="95%">
                     
                    <!-- <input type="button" value="Post" class="btn btn-primary" id="postBtn" onClick="get()" style="width: 90px">-->
                      <input type="submit" value="Post" class="btn btn-primary sbmt-btn" id="postSubmit" name="submit" onClick="get()" style="width: 90px;">
@@ -448,7 +451,7 @@ input[type="file"] {
 
                 ?>
 
-                <script src="../../assets/js/base.js"></script>
+                <!--<script src="../../assets/js/base.js"></script>-->
             
             
 
@@ -645,6 +648,67 @@ input[type="file"] {
     <!-- SlimScroll 1.3.0 -->
     <script src="../../assets/dash/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+
+
+    <script type="text/javascript">
+      
+      (function () {
+    var takePicture = document.querySelector("#take-picture"),
+        showPicture = document.querySelector("#show-picture");
+
+    if (takePicture && showPicture) {
+        // Set events
+
+        takePicture.onchange = function (event) {
+            // Get a reference to the taken picture or chosen file
+            //showPicture.style.display = "block";
+
+            //showPicture.addClass('view');
+            //showPicture.removeClass("hide");
+
+            var files = event.target.files,
+                file;
+            if (files && files.length > 0) {
+                file = files[0];
+                try {
+                    // Get window.URL object
+                    var URL = window.URL || window.webkitURL;
+
+                    // Create ObjectURL
+                    var imgURL = URL.createObjectURL(file);
+
+                    // Set img src to ObjectURL
+                    showPicture.src = imgURL;
+
+                    // Revoke ObjectURL after imagehas loaded
+                    showPicture.onload = function() {
+                        URL.revokeObjectURL(imgURL);  
+                    };
+                }
+                catch (e) {
+                    try {
+                        // Fallback if createObjectURL is not supported
+                        var fileReader = new FileReader();
+                        fileReader.onload = function (event) {
+                            showPicture.src = event.target.result;
+                        };
+                        fileReader.readAsDataURL(file);
+                    }
+                    catch (e) {
+                        // Display error message
+                        var error = document.querySelector("#error");
+                        if (error) {
+                            error.innerHTML = "Neither createObjectURL or FileReader are supported";
+                        }
+                    }
+                }
+            }
+        };
+    }
+})();
+
+    </script>
 
   </body>
 </html>
